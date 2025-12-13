@@ -1,0 +1,213 @@
+print("Задача 1: Приближенное вычисление arctg(x)")
+print("=" * 50)
+
+x = float(input("Введите X: "))
+n = int(input("Введите N: "))
+
+result = 0
+for i in range(n + 1):
+    stepen = 2 * i + 1
+    chislitel = (-1) ** i * (x ** stepen)
+    znamenatel = stepen
+    slagaemoe = chislitel / znamenatel
+    result = result + slagaemoe
+
+print("Результат:", result)
+
+print("\n" + "=" * 50)
+print("Задача 2: Наибольшее K")
+print("=" * 50)
+
+A = float(input("Введите A: "))
+
+K = 0
+summa = 0
+nomer = 1
+
+while True:
+    if summa + (1 / nomer) < A:
+        summa = summa + (1 / nomer)
+        K = nomer
+        nomer = nomer + 1
+    else:
+        break
+
+print("K =", K)
+print("Сумма =", summa)
+
+print("\n" + "=" * 50)
+print("Примеры циклов")
+print("=" * 50)
+
+a = input("Первое число: ")
+b = input("Второе число: ")
+
+while True:
+    try:
+        a = int(a)
+        break
+    except:
+        print("Ошибка!")
+        a = input("Первое число: ")
+
+while True:
+    try:
+        b = int(b)
+        break
+    except:
+        print("Ошибка!")
+        b = input("Второе число: ")
+
+kolichestvo = 0
+tekushee = a
+while tekushee <= b:
+    print(tekushee)
+    tekushee = tekushee + 1
+    kolichestvo = kolichestvo + 1
+print("Количество:", kolichestvo)
+
+print("\n" + "=" * 50)
+print("Задачи на оценку")
+print("=" * 50)
+
+print("\n1. Отрицательные числа")
+chisla = []
+for i in range(4):
+    chislo = float(input("Число " + str(i+1) + ": "))
+    chisla.append(chislo)
+
+summa_otr = 0
+kol_otr = 0
+for chislo in chisla:
+    if chislo < 0:
+        summa_otr = summa_otr + chislo
+        kol_otr = kol_otr + 1
+
+print("Сумма отрицательных:", summa_otr)
+print("Количество отрицательных:", kol_otr)
+
+print("\n2. Четные числа")
+chisla = []
+for i in range(4):
+    chislo = int(input("Целое число " + str(i+1) + ": "))
+    chisla.append(chislo)
+
+kol_chet = 0
+for chislo in chisla:
+    if chislo % 2 == 0:
+        kol_chet = kol_chet + 1
+
+print("Количество четных:", kol_chet)
+
+print("\n3. Квадраты и кубы")
+for i in range(2, 6):
+    print(i, "квадрат", i*i, "куб", i*i*i)
+
+print("\n4. Сумма факториалов")
+n = int(input("n: "))
+
+def factorial(ch):
+    res = 1
+    for i in range(1, ch+1):
+        res = res * i
+    return res
+
+obsh_sum = 0
+for i in range(1, n+1):
+    obsh_sum = obsh_sum + factorial(i)
+
+print("Сумма факториалов:", obsh_sum)
+
+print("\n5. Среднее арифметическое")
+n = int(input("N: "))
+chisla = []
+for i in range(n):
+    chislo = float(input("Число " + str(i+1) + ": "))
+    chisla.append(chislo)
+
+summa_vseh = 0
+for chislo in chisla:
+    summa_vseh = summa_vseh + chislo
+
+srednee = summa_vseh / n
+print("Среднее:", srednee)
+
+print("\n6. Нули")
+n = int(input("N: "))
+kol_nuley = 0
+for i in range(n):
+    chislo = float(input("Число " + str(i+1) + ": "))
+    if chislo == 0:
+        kol_nuley = kol_nuley + 1
+
+print("Количество нулей:", kol_nuley)
+
+print("\n7. Числа в порядке убывания")
+a = int(input("A: "))
+b = int(input("B: "))
+
+kolichestvo = 0
+tekushee = b
+while tekushee >= a:
+    print(tekushee)
+    tekushee = tekushee - 1
+    kolichestvo = kolichestvo + 1
+
+print("Количество:", kolichestvo)
+
+print("\n8. Сумма чисел")
+a = int(input("A: "))
+b = int(input("B: "))
+
+summa = 0
+tekushee = a
+while tekushee <= b:
+    summa = summa + tekushee
+    tekushee = tekushee + 1
+
+print("Сумма:", summa)
+
+print("\n9. Элементы прогрессии")
+print("Прогрессия: 1, 4, 7, 10, 13...")
+kolichestvo = 0
+tekushee = 1
+shag = 3
+
+while tekushee < 30:
+    if tekushee > 10:
+        print("Элемент:", tekushee)
+        kolichestvo = kolichestvo + 1
+    tekushee = tekushee + shag
+
+print("Количество элементов:", kolichestvo)
+
+print("\n10. Числа Фибоначчи")
+n = int(input("N: "))
+
+fib = [0, 1]
+kol_chet = 0
+
+if fib[0] % 2 == 0:
+    kol_chet = kol_chet + 1
+if fib[1] % 2 == 0:
+    kol_chet = kol_chet + 1
+
+for i in range(2, n):
+    sled = fib[-1] + fib[-2]
+    fib.append(sled)
+    if sled % 2 == 0:
+        kol_chet = kol_chet + 1
+
+print("Числа Фибоначчи:", fib)
+print("Количество четных:", kol_chet)
+
+print("\n11. Прогрессия деленная на 2")
+k = int(input("Количество элементов: "))
+
+tekushee = 1
+shag = 3
+for i in range(k):
+    result = tekushee / 2
+    okrugl = round(result)
+    print(tekushee, "делить на 2 =", result, "округляем =", okrugl)
+    tekushee = tekushee + shag
