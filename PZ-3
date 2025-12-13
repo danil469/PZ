@@ -1,0 +1,30 @@
+print("Проверка последовательности цифр трехзначного числа")
+print("=" * 40)
+
+num = int(input("Введите трехзначное число: "))
+
+first_digit = num // 100
+second_digit = (num // 10) % 10
+third_digit = num % 10
+
+ascending = first_digit < second_digit < third_digit
+descending = first_digit > second_digit > third_digit
+
+print(f"Число: {num}")
+print(f"Цифры: {first_digit}, {second_digit}, {third_digit}")
+print(f"Возрастающая последовательность: {ascending}")
+print(f"Убывающая последовательность: {descending}")
+
+result = ascending or descending
+print(f"Цифры образуют возрастающую или убывающую последовательность: {result}")
+
+print("\n" + "=" * 40)
+print("Преобразование целого числа")
+print("=" * 40)
+
+num = int(input("Введите целое число: "))
+
+result = num + (num > 0) * 1 + (num <= 0) * (-2)
+
+print(f"Исходное число: {num}")
+print(f"Преобразованное число: {result}")
