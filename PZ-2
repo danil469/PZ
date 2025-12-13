@@ -1,0 +1,5 @@
+num = int(input("Введите целое число больше 999: "))
+
+thousands_digit = (num // 1000) % 10
+
+print(f"Цифра в разряде тысяч: {thousands_digit}")
