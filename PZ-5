@@ -1,188 +1,28 @@
-print("Задача 1: Рамка вокруг слова")
-print("=" * 40)
+# 1. С помощью функций получить вертикальную и горизонтальную линии. Линия проводится многократной печатью символа. Заключить слово в рамку из полученных линий.
 
-def gorizontal(simvol, dlina):
-    return simvol * dlina
+def horizontal_line(symbol, length):
+    return symbol * length
 
-def vertikal(simvol, shirina, slovo=""):
-    if slovo:
-        return f"{simvol}{slovo.center(shirina-2)}{simvol}"
-    else:
-        return f"{simvol}{' '*(shirina-2)}{simvol}"
+def vertical_line(symbol, word):
+    return symbol + word + symbol
 
-slovo = input("Введите слово: ")
-simvol = input("Введите символ для рамки: ")
+word = input("Введите слово: ")
+symbol = '*'
+length = len(word) + 2
+print(horizontal_line(symbol, length))
+print(vertical_line(symbol, word))
+print(horizontal_line(symbol, length))
 
-shirina = len(slovo) + 4
-
-print(gorizontal(simvol, shirina))
-print(vertikal(simvol, shirina, slovo))
-print(gorizontal(simvol, shirina))
-
-print("\n" + "=" * 40)
-print("Задача 2: Треугольник")
-print("=" * 40)
+# 2. Описать функцию TrianglePS(a, P, S), вычисляющую по стороне a равностороннего треугольника его периметр P = 3*a и площадь S = a^2 * √3 / 4 (a — входной, P и S — выходные параметры; все параметры являются вещественными). С помощью этой функции найти периметры и площади трех равносторонних треугольников с данными сторонами.
 
 import math
 
-def TrianglePS(a, P, S):
+def TrianglePS(a):
     P = 3 * a
-    S = (a ** 2) * math.sqrt(3) / 4
+    S = (a ** 2 * math.sqrt(3)) / 4
     return P, S
 
-storoni = []
 for i in range(3):
-    while True:
-        try:
-            a = float(input(f"Введите сторону треугольника {i+1}: "))
-            if a > 0:
-                storoni.append(a)
-                break
-            else:
-                print("Сторона должна быть больше 0")
-        except:
-            print("Ошибка, введите число")
-
-for i, a in enumerate(storoni, 1):
-    P, S = TrianglePS(a, 0, 0)
-    print(f"Треугольник {i}: сторона = {a:.2f}")
-    print(f"  Периметр P = {P:.2f}")
-    print(f"  Площадь S = {S:.2f}")
-
-print("\n" + "=" * 40)
-print("Примеры из задания")
-print("=" * 40)
-
-print("\nПример 1: Максимум из трех чисел")
-def max2(ch1, ch2):
-    if ch1 > ch2:
-        return ch1
-    return ch2
-
-def max3(a, b, c):
-    return max2(a, max2(b, c))
-
-while True:
-    try:
-        a = int(input("Первое число: "))
-        b = int(input("Второе число: "))
-        c = int(input("Третье число: "))
-        break
-    except:
-        print("Ошибка, введите целые числа")
-
-print("Максимальное:", max3(a, b, c))
-
-print("\nПример 2: Количество цифр в числе")
-def countInt(chislo):
-    if chislo == 0:
-        return 1
-    kol = 0
-    while chislo > 0:
-        chislo = chislo // 10
-        kol += 1
-    return kol
-
-while True:
-    try:
-        n = int(input("Введите целое число: "))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
-print("Количество цифр:", countInt(n))
-
-print("\nПример 3: Двузначные числа с заданной цифрой")
-def search_figure(cifra):
-    for chislo in range(10, 100):
-        a = chislo // 10
-        b = chislo % 10
-        if a == cifra or b == cifra:
-            print(chislo, -chislo)
-
-while True:
-    try:
-        cifra = int(input("Введите цифру (0-9): "))
-        if 0 <= cifra <= 9:
-            break
-        else:
-            print("Цифра должна быть от 0 до 9")
-    except:
-        print("Ошибка, введите цифру")
-
-search_figure(cifra)
-
-print("\n" + "=" * 40)
-print("Задачи на оценку")
-print("=" * 40)
-
-print("\n1. У какого числа больше сумма цифр")
-def summa_cifr(chislo):
-    summa = 0
-    chislo = abs(chislo)
-    while chislo > 0:
-        summa += chislo % 10
-        chislo = chislo // 10
-    return summa
-
-chisla = []
-for i in range(3):
-    while True:
-        try:
-            chislo = int(input(f"Число {i+1}: "))
-            chisla.append(chislo)
-            break
-        except:
-            print("Ошибка, введите целое число")
-
-max_sum = -1
-nomer = 0
-for i, ch in enumerate(chisla):
-    s = summa_cifr(ch)
-    print(f"Число {ch}: сумма цифр = {s}")
-    if s > max_sum:
-        max_sum = s
-        nomer = i + 1
-
-print(f"Наибольшая сумма цифр у числа {nomer}")
-
-print("\n2. Периметр и площадь прямоугольника")
-def rectangle(a, b):
-    P = 2 * (a + b)
-    S = a * b
-    return P, S
-
-while True:
-    try:
-        a = float(input("Длина прямоугольника: "))
-        b = float(input("Ширина прямоугольника: "))
-        if a > 0 and b > 0:
-            break
-        else:
-            print("Длины должны быть положительными")
-    except:
-        print("Ошибка, введите числа")
-
-P, S = rectangle(a, b)
-print(f"Периметр: {P}")
-print(f"Площадь: {S}")
-
-print("\n3. Количество цифр числа (функция)")
-def count_digits(chislo):
-    if chislo == 0:
-        return 1
-    chislo = abs(chislo)
-    kol = 0
-    while chislo > 0:
-        chislo = chislo // 10
-        kol += 1
-    return kol
-
-while True:
-    try:
-        n = int(input("Введите целое число: "))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
-print(f"Количество цифр: {count_digits(n)}")
+    a = float(input("Введите сторону треугольника: "))
+    P, S = TrianglePS(a)
+    print("Периметр:", P, "Площадь:", S)
