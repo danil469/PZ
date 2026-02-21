@@ -1,253 +1,65 @@
-print("Задача 1: Арифметическая прогрессия")
-print("=" * 40)
+# Дан целочисленный список размера N, не содержащий одинаковых чисел. Проверить, образуют ли его элементы арифметическую прогрессию. Если образуют, то вывести разность прогрессии, если нет — вывести 0.
 
-while True:
-    try:
-        N = int(input("Введите N: "))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
-A = []
+N = int(input())
+a = []
 for i in range(N):
-    while True:
-        try:
-            chislo = int(input(f"Элемент {i+1}: "))
-            A.append(chislo)
+    a.append(int(input()))
+if N >= 2:
+    d = a[1] - a[0]
+    flag = True
+    for i in range(2, N):
+        if a[i] - a[i-1] != d:
+            flag = False
             break
-        except:
-            print("Ошибка, введите целое число")
-
-B = sorted(A)
-raznost = B[1] - B[0]
-progressiya = True
-
-for i in range(N-1):
-    if B[i+1] - B[i] != raznost:
-        progressiya = False
-        break
-
-if progressiya:
-    print(f"Это прогрессия, разность = {raznost}")
+    if flag:
+        print(d)
+    else:
+        print(0)
 else:
-    print("Это не прогрессия, разность = 0")
+    print(0)
 
-print("\n" + "=" * 40)
-print("Задача 2: Новый список B")
-print("=" * 40)
+# Дан список A размера N. Сформировать новый список B того же размера, элементы которого определяются следующим образом: BK = 2*AK, если AK < 5, AK/2 в противном случае.
 
-while True:
-    try:
-        N = int(input("Введите N: "))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
+N = int(input())
 A = []
 for i in range(N):
-    while True:
-        try:
-            element = float(input(f"Элемент A[{i}]: "))
-            A.append(element)
-            break
-        except:
-            print("Ошибка, введите число")
-
+    A.append(float(input()))
 B = []
 for i in range(N):
     if A[i] < 5:
         B.append(2 * A[i])
     else:
         B.append(A[i] / 2)
+for x in B:
+    print(x)
 
-print("Список A:", A)
-print("Список B:", B)
+# Дано множество A из N точек (точки заданы своими координатами x, у). Среди всех точек этого множества, лежащих в первой или третьей четверти, найти точку, наиболее близкую к началу координат. Если таких точек нет, то вывести точку с нулевыми координатами. Расстояние R между точками с координатами (x1, y1) и (x2, у2) вычисляется по формуле: R = √(x2 – x1)2 + (у2 – y1)2. Для хранения данных о каждом наборе точек следует использовать по два списка: первый список для хранения абсцисс, второй — для хранения ординат.
 
-print("\n" + "=" * 40)
-print("Задача 3: Ближайшая точка")
-print("=" * 40)
-
-while True:
-    try:
-        N = int(input("Введите количество точек N: "))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
-x_list = []
-y_list = []
-
+import math
+N = int(input())
+x_coords = []
+y_coords = []
 for i in range(N):
-    while True:
-        try:
-            x = float(input(f"Точка {i+1}, координата x: "))
-            y = float(input(f"Точка {i+1}, координата y: "))
-            x_list.append(x)
-            y_list.append(y)
-            break
-        except:
-            print("Ошибка, введите числа")
+    x = float(input())
+    y = float(input())
+    x_coords.append(x)
+    y_coords.append(y)
 
-blizhayshaya = (0.0, 0.0)
-min_rasstoyanie = 1000000000
-est_tochki = False
-
+min_dist = float('inf')
+best_x = 0
+best_y = 0
+found = False
 for i in range(N):
-    x = x_list[i]
-    y = y_list[i]
-    
+    x = x_coords[i]
+    y = y_coords[i]
     if (x > 0 and y > 0) or (x < 0 and y < 0):
-        est_tochki = True
-        rasstoyanie = ((x - 0) ** 2 + (y - 0) ** 2) ** 0.5
-        
-        if rasstoyanie < min_rasstoyanie:
-            min_rasstoyanie = rasstoyanie
-            blizhayshaya = (x, y)
-
-if est_tochki:
-    print(f"Ближайшая точка: ({blizhayshaya[0]}, {blizhayshaya[1]})")
+        dist = math.sqrt(x**2 + y**2)
+        if dist < min_dist:
+            min_dist = dist
+            best_x = x
+            best_y = y
+            found = True
+if found:
+    print(best_x, best_y)
 else:
-    print("Нет точек в 1 или 3 четверти")
-    print(f"Точка: ({blizhayshaya[0]}, {blizhayshaya[1]})")
-
-print("\n" + "=" * 40)
-print("Примеры из задания")
-print("=" * 40)
-
-print("\nПример 1: Срез списка")
-mylist = ['ab','ra','ka','da','bra']
-mylist[0:2] = [10,20]
-print(mylist)
-
-print("\nПример 2: Случайные числа в список")
-import random
-c = []
-i = 0
-while i < 10:
-    c.append(random.randint(0,100))
-    i += 1
-print(c)
-
-print("\nПример 3: Сортировка списка")
-a = [1, 4, 2, 8, 1] 
-a.sort() 
-print(a)
-
-print("\nПример 4: Обратный порядок")
-a = [1, 3, 5, 7] 
-a.reverse() 
-print(a)
-
-print("\nПример 5: 5 чисел в список")
-ListAppend = []
-i = 0
-while i < 5:
-    ListAppend.append(int(input('Введите число: ')))
-    i += 1
-print(ListAppend)
-print('Сумма:', sum(ListAppend))
-print('Минимальный:', min(ListAppend))
-print('Максимальный:', max(ListAppend))
-
-print("\nПример 6: 100 случайных чисел")
-import random
-def PrintList(d):
-    i = 0
-    while i < 100:
-        if (i % 10 != 0) or (i == 0):
-            print(d[i], end=' ')
-        else:
-            print()
-            print(d[i], end=' ')
-        i += 1
-    print()
-
-ListAppend = []
-t = 0
-while t < 100:
-    ListAppend.append(round(random.random(), 2))
-    t += 1
-print('Исходный список')
-PrintList(ListAppend)
-ListAppend.sort()
-print('Отсортированный список')
-PrintList(ListAppend)
-
-print("\nПример 7: Увеличение четных чисел")
-import random
-def PrintList(ListAppend):
-    for element in ListAppend:
-        print(element, end=' ')
-    print()
-
-while True:
-    try:
-        d = int(input('Введите размер массива: '))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
-ListAppend = []
-t = 0
-k = 0
-while t < d:
-    chislo = random.randint(-100, 100)
-    ListAppend.append(chislo)
-    if chislo % 2 == 0:
-        k = chislo
-    t += 1
-
-print('Исходный массив')
-PrintList(ListAppend)
-print('Последнее четное число:', k)
-
-for i in range(len(ListAppend)):
-    if ListAppend[i] % 2 == 0:
-        ListAppend[i] += k
-
-print('Полученный список')
-PrintList(ListAppend)
-
-print("\nПример 8: Объединение двух массивов")
-import random
-a,b,c = [],[],[]
-i = 0
-while i < 5:
-    a.append(random.randrange(0,20))
-    b.append(random.randrange(0, 20))
-    i += 1
-a.sort()
-b.sort()
-print('Массив А:', a)
-print('Массив В:', b)
-c = a + b
-c.sort()
-print('Массив C:', c)
-
-print("\nПример 9: Среднее арифметическое")
-import random
-while True:
-    try:
-        n = int(input('Введите размер массива: '))
-        break
-    except:
-        print("Ошибка, введите целое число")
-
-a, b = [], []
-t = 0
-while t < n:
-    a.append(random.randint(1, 2))
-    t += 1
-print('Исходный массив:', a)
-
-t = 0
-i = 0
-while t < n:
-    s = 0
-    while i < n:
-        s += a[i]
-        i += 1
-    b.append(s / (n - t))
-    t += 1
-    i = t
-print('Массив B:', b)
+    print(0, 0)
