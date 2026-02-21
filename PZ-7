@@ -1,68 +1,20 @@
-print("Пример из задания: Работа с символами")
-print("=" * 40)
+# Дана строка, изображающая арифметическое выражение вида «<цифра>±<цифра>±...±<цифра>», где на месте знака операции «±» находится символ «+» или «-» (например, «4+7-2-8»). Вывести значение данного выражения (целое число).
 
-import random
+s = input()
+result = int(s[0])
+for i in range(1, len(s), 2):
+    op = s[i]
+    num = int(s[i+1])
+    if op == '+':
+        result = result + num
+    else:
+        result = result - num
+print(result)
 
-List_4 = []
-d = int(input('Введи размер массива: '))
-t = 0
-while t < d:
-    List_4.append(chr(random.randint(45, 100)))
-    t += 1
+# Даны строки S, S1 и S2. Заменить в строке S все вхождения строки S1 на строку S2.
 
-print('Исходный массив: ')
-for i in List_4:
-    print(i, end=' ')
-print()
-
-h = 0
-for i in List_4:
-    if i.isalpha():
-        h += 1
-
-print('Количество букв: ', h)
-New_String = ''.join(List_4)
-print("Буквы в нижнем регистре: ", New_String.lower())
-
-print("\n" + "=" * 40)
-print("Задача 1: Вычисление арифметического выражения")
-print("=" * 40)
-
-vyrazhenie = input("Введите выражение (например 4+7-2-8): ")
-
-result = 0
-tek_chislo = 0
-znak = 1
-
-for simvol in vyrazhenie:
-    if simvol.isdigit():
-        tek_chislo = tek_chislo * 10 + int(simvol)
-    elif simvol in '+-':
-        result = result + znak * tek_chislo
-        tek_chislo = 0
-        if simvol == '+':
-            znak = 1
-        else:
-            znak = -1
-
-result = result + znak * tek_chislo
-print(f"Исходная строка: {vyrazhenie}")
-print(f"Результат: {result}")
-
-print("\n" + "=" * 40)
-print("Задача 2: Замена подстрок")
-print("=" * 40)
-
-S = input("Введите строку S: ")
-S1 = input("Введите строку S1: ")
-S2 = input("Введите строку S2: ")
-
-if S1:
-    result_string = S.replace(S1, S2)
-else:
-    result_string = S
-
-print(f"Исходная строка S: {S}")
-print(f"Строка для замены S1: {S1}")
-print(f"Заменяющая строка S2: {S2}")
-print(f"Результат: {result_string}")
+S = input()
+S1 = input()
+S2 = input()
+result = S.replace(S1, S2)
+print(result)
